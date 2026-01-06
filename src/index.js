@@ -3,28 +3,29 @@ const form = document.querySelector('#create-task-form')
 
 // Add submit event listener
 form.addEventListener('submit', (event) => {
-  // Prevent default form behavior
   event.preventDefault()
+
+  // Select the input directly
+  const input = document.querySelector('#new-task-description')
 
   // Gather data into an object
   const task = {
-    description: event.target['new-task-description'].value
+    description: input.value
   }
 
-  // Call buildToDo and pass in the task
+  // Call buildToDo with the task
   buildToDo(task)
 })
 
-// Function to build and add a task to the list
+// Build and append task to the list
 function buildToDo(task) {
-  // Create new li element
   const li = document.createElement('li')
-
-  // Add task text
   li.textContent = task.description
 
-  // Append li to task list
   const taskList = document.querySelector('#tasks')
   taskList.appendChild(li)
 }
+
+expect(taskList.textContent).to.include('Wash the dishes')
+
 
